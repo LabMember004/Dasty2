@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-Route::get('/', [ProductController::class, 'index']);
-Route::post('/products', [ProductController::class, 'store']);
-Route::put('/products/{product}/edit', [ProductController::class, 'update']);
-Route::delete('/products/{product}', [ProductController::class, 'destroy']);
+Route::get('/', function () {
+    return view('welcome'); // This should match the path to the welcome view
+});
+
+Route::get('/', [ProductController::class, 'index'])->name('welcome');
+
+Route::resource('products', ProductController::class);
