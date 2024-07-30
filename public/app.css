@@ -1,0 +1,19 @@
+.product-group {
+    display: flex;
+    border: 5px solid green;
+    gap:10px;
+    
+    width:1600px;
+}
+
+.product-group-item {
+    display:flex;
+    flex-direction:column;
+    width:310px;
+    border: 1px solid black;
+    height:500px;
+}
+.card-img-top {
+    border:12px solid yellow;
+    height:300px;
+}
