@@ -18,7 +18,7 @@
                     <p>Price: ${{ $product->price }}</p>
                     <p>Category: {{ $product->category }}</p>
                     @if ($product->image)
-                        <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="img-thumbnail" width="150">
+                    <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="img-thumbnail" width="150">
                     @endif
                     <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="mt-2">
                         @csrf
