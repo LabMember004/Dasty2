@@ -10,3 +10,4 @@ Route::get('/', function () {
 Route::get('/', [ProductController::class, 'index'])->name('welcome');
 
 Route::resource('products', ProductController::class);
+Route::get('/search', [ProductController::class, 'search'])->name('products.search');

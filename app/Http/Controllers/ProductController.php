@@ -12,9 +12,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-
-        // Return the view with the products data
-        return view('welcome', compact('products')); // Adjusted path
+        return view('welcome', compact('products'));
     }
 
     public function create()
@@ -76,5 +74,15 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('welcome');
     }
-    
+   
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('name', 'like', '%'.$query.'%')->get();
+        return view('welcome', compact('products'));
+    }
+    public function show ($id) {
+        $product = Product::find($id);
+        return view('products.show' , compact('product'));
+    }
 }

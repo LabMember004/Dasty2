@@ -1,19 +1,16 @@
 .product-group {
-    display: flex;
-    border: 5px solid green;
+    display: grid;
+    grid-template-columns:repeat(3,auto);
+    grid-auto-flow:row;
     gap:10px;
-    
-    width:1600px;
+    border:5px solid yellow;
+    width:1300px;
 }
 
 .product-group-item {
-    display:flex;
-    flex-direction:column;
     width:310px;
-    border: 1px solid black;
     height:500px;
 }
 .card-img-top {
-    border:12px solid yellow;
     height:300px;
 }
