@@ -20,7 +20,7 @@
                     <div class="product-card">
                         <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 200px;">
                         <h3>{{ $product->name }}</h3>
-                        <p>{{ Str::limit($product->description, 100) }}</p> <!-- Limit description to 100 characters -->
+                        <p>{{ Str::limit($product->description, 100) }}</p> 
                     </div>
                 </a>
             @endforeach

@@ -3,18 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
-    return view('welcome'); // This should match the path to the welcome view
-});
-
+// Home route
 Route::get('/', [ProductController::class, 'index'])->name('welcome');
 
-Route::resource('products', ProductController::class);
-Route::get('/search', [ProductController::class, 'search'])->name('products.search');
+// Product routes
+// Route::resource('products', ProductController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create')->middleware('auth'); 
+Route::post('/products', [ProductController::class, 'store'])->name('products.store')->middleware('auth');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit')->middleware('auth');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update')->middleware('auth');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('auth');
 
+// Search route
+Route::get('/search', [ProductController::class, 'search'])->name('products.search');
+
+// Authentication routes
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\ProductController::class, 'index'])->name('welcome');
-Route::resource('products', App\Http\Controllers\ProductController::class)->middleware('auth');
-Route::get('/products/search', [App\Http\Controllers\ProductController::class, 'search'])->name('products.search')->middleware('auth');

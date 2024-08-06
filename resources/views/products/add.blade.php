@@ -1,4 +1,4 @@
-<h1>Product </h1>
+<!-- <h1>Product </h1>
 
 <form action="/products" method="POST" enctype="multipart/form-data">
     @csrf
@@ -23,4 +23,4 @@
         <input type="text" class="form-control" id="category" name="category" required>
     </div>
     <button type="submit" class="btn btn-primary">Add Product</button>
-</form>
+</form> -->
