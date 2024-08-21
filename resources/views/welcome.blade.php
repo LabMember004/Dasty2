@@ -6,6 +6,12 @@
 
 @section('content')
     <h1>Welcome to the Product CRUD Application</h1>
+    <div class="category-buttons mb-3">
+        <a href="{{ route('welcome') }}" class="btn btn-secondary">All</a>
+        <a href="{{ route('products.filter', 'Cars') }}" class="btn btn-primary">Cars</a>
+        <a href="{{ route('products.filter', 'Electronics') }}" class="btn btn-primary">Electronics</a>
+        <a href="{{ route('products.filter', 'Houses') }}" class="btn btn-primary">Houses</a>
+    </div>
     <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
     <form method="GET" action="{{ route('products.search') }}">
         <input type="text" name="query" placeholder="Search by title" value="{{ request()->input('query') }}">

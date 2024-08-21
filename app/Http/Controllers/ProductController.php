@@ -28,9 +28,9 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         if (!$user) {
-            return redirect()->route('login'); // Redirect to login if user is not authenticated
+            return redirect()->route('login'); 
         }
-        // Validate the request data
+        
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -47,7 +47,7 @@ class ProductController extends Controller
 
         // Create and save the product
         $product = new Product($validatedData);
-        $product->user_id = $user->id; // Assuming you have a user_id field in your products table
+       
         $product->save();
 
         return redirect()->route('products.index');
@@ -95,4 +95,10 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view('products.show' , compact('product'));
     }
+    public function filterByCategory($category)
+{
+    $products = Product::where('category', $category)->get();
+    return view('welcome', compact('products'));
+}
+
 }

@@ -24,9 +24,14 @@
                 <input type="file" class="form-control" id="image" name="image">
             </div>
             <div class="form-group">
-                <label for="category">Category</label>
-                <input type="text" class="form-control" id="category" name="category" required>
-            </div>
+            <label for="category">Category</label>
+            <select class="form-control" id="category" name="category" required>
+            <option value="Cars">Cars</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Houses">Houses</option>
+    </select>
+</div>
+
             <button type="submit" class="btn btn-primary">Create Product</button>
         </form>
     </div>
