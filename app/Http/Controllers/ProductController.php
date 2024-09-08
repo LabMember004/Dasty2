@@ -11,7 +11,7 @@ class ProductController extends Controller
     
     public function index()
     {
-        $products = Product::all();
+        $products = Product::all(); // Fetch all products, regardless of the user
         return view('welcome', compact('products'));
     }
 
@@ -26,32 +26,26 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-        $user = Auth::user();
-        if (!$user) {
-            return redirect()->route('login'); 
-        }
-        
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
             'price' => 'required|numeric',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
-            'category' => 'required|string|max:255',
+            'image' => 'required|image',
+            'category' => 'required',
         ]);
-
-        // Handle image upload if present
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $imagePath;
-        }
-
-        // Create and save the product
-        $product = new Product($validatedData);
-       
+    
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->image = $request->file('image')->store('images', 'public');
+        $product->category = $request->input('category');
+        $product->user_id = auth()->id(); // Assign the currently authenticated user's ID
         $product->save();
-
-        return redirect()->route('products.index');
+    
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
+    
 
     public function edit(Product $product)
     {
@@ -99,6 +93,12 @@ class ProductController extends Controller
 {
     $products = Product::where('category', $category)->get();
     return view('welcome', compact('products'));
+}
+
+public function myProduct()
+{
+    $products = Product::where('user_id', Auth::id())->get(); 
+    return view('products.myProduct', compact('products'));
 }
 
 }

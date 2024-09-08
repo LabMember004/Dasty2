@@ -17,8 +17,12 @@
         <input type="text" name="query" placeholder="Search by title" value="{{ request()->input('query') }}">
         <button type="submit">Search</button>
     </form>
+    <a href="{{ route('products.myProduct') }}" class="btn btn-primary">My Products</a>
+
     <div class="mt-5">
         <h2>Products List</h2>
+
+
         
         <div class="product-group">
             @foreach($products as $product)
