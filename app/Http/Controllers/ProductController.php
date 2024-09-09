@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Auth;
+use App\Models\Favorite;
+
 class ProductController extends Controller
 {
 
@@ -100,19 +102,52 @@ public function myProduct()
     $products = Product::where('user_id', Auth::id())->get(); 
     return view('products.myProduct', compact('products'));
 }
-public function favorite($id)
+public function favorite($productId)
 {
-    $product = Product::findOrFail($id);
-    auth()->user()->favorites()->attach($product);
+    $user = auth()->user();
 
-    return redirect()->back()->with('success', 'Product added to favorites!');
+    // Check if the favorite already exists
+    $existingFavorite = Favorite::where('user_id', $user->id)
+                                ->where('product_id', $productId)
+                                ->first();
+
+    if (!$existingFavorite) {
+        // Create a new favorite record
+        Favorite::create([
+            'user_id' => $user->id,
+            'product_id' => $productId
+        ]);
+    }
+
+    return redirect()->back();
 }
 
-public function favorites()
-{
-    $favorites = auth()->user()->favorites()->get();
 
-    return view('products.favorites', compact('favorites'));
+
+
+public function showFavorites()
+{
+    $user = auth()->user();
+    $favorites = $user->favorites()->with('product')->get(); // Fetch favorites with related products
+
+    $products = $favorites->pluck('product'); // Get the actual products
+
+    return view('products.favorites', compact('products'));
+}
+public function unfavorite($productId)
+{
+    $user = auth()->user();
+
+    // Find and delete the favorite record
+    $favorite = Favorite::where('user_id', $user->id)
+                        ->where('product_id', $productId)
+                        ->first();
+
+    if ($favorite) {
+        $favorite->delete();
+    }
+
+    return redirect()->back();
 }
 
 

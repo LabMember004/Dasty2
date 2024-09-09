@@ -53,7 +53,7 @@ public function products()
 
 public function favorites()
 {
-    return $this->belongsToMany(Product::class, 'favorites');
+    return $this->hasMany(Favorite::class);
 }
 
 

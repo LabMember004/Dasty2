@@ -17,7 +17,10 @@ Route::get('/products/category/{category}', [ProductController::class, 'filterBy
 Route::post('/products/{product}/favorite', [ProductController::class, 'favorite'])->name('products.favorite');
 
 // Route for viewing all favorited products
-Route::get('/favorites', [ProductController::class, 'favorites'])->name('products.favorites');
+Route::post('/products/{product}/unfavorite', [ProductController::class, 'unfavorite'])->name('products.unfavorite');
+Route::get('/favorites', [ProductController::class, 'showFavorites'])->name('products.favorites');
+
+
 
 
 Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');
