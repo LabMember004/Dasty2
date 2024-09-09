@@ -14,12 +14,9 @@ Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name
 Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update')->middleware('auth');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('auth');
 Route::get('/products/category/{category}', [ProductController::class, 'filterByCategory'])->name('products.filter');
-Route::middleware('auth')->group(function () {
-    Route::get('/', [ProductController::class, 'index'])->name('welcome');
-    Route::resource('products', ProductController::class);
-});
 
-Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct');
+
+Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');
 
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 

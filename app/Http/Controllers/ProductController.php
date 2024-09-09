@@ -11,7 +11,7 @@ class ProductController extends Controller
     
     public function index()
     {
-        $products = Product::all(); // Fetch all products, regardless of the user
+        $products = Product::all(); 
         return view('welcome', compact('products'));
     }
 
