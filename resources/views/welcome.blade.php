@@ -18,6 +18,7 @@
         <button type="submit">Search</button>
     </form>
     <a href="{{ route('products.myProduct') }}" class="btn btn-primary">My Products</a>
+    <a href="{{ route('products.favorites') }}" class="btn btn-primary">My Favorites</a>
 
     <div class="mt-5">
         <h2>Products List</h2>
@@ -25,16 +26,24 @@
 
         
         <div class="product-group">
-            @foreach($products as $product)
-                <a href="{{ route('products.show', $product->id) }}" class="product-group-item" style="text-decoration: none; color: inherit;">
-                    <div class="product-card">
-                        <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 200px;">
-                        <h3>{{ $product->name }}</h3>
-                        <p>{{ Str::limit($product->description, 30) }}</p>
-                        <p> ${{ $product->price }}</p>
-                    </div>
-                </a>
-            @endforeach
+        @foreach($products as $product)
+    <div class="product-group-item">
+        <x-card-style :product="$product" />
+
+        <form action="{{ route('products.favorite', $product->id) }}" method="POST" class="mt-2">
+            @csrf
+            <button type="submit" class="btn btn-success">Favorite</button>
+        </form>
+
+        <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="mt-2">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Update</a>
+        </form>
+    </div>
+@endforeach
+
         </div>
     </div>
 @endsection

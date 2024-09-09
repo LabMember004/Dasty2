@@ -14,6 +14,10 @@ Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name
 Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update')->middleware('auth');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('auth');
 Route::get('/products/category/{category}', [ProductController::class, 'filterByCategory'])->name('products.filter');
+Route::post('/products/{product}/favorite', [ProductController::class, 'favorite'])->name('products.favorite');
+
+// Route for viewing all favorited products
+Route::get('/favorites', [ProductController::class, 'favorites'])->name('products.favorites');
 
 
 Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');

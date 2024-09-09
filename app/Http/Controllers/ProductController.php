@@ -100,5 +100,20 @@ public function myProduct()
     $products = Product::where('user_id', Auth::id())->get(); 
     return view('products.myProduct', compact('products'));
 }
+public function favorite($id)
+{
+    $product = Product::findOrFail($id);
+    auth()->user()->favorites()->attach($product);
+
+    return redirect()->back()->with('success', 'Product added to favorites!');
+}
+
+public function favorites()
+{
+    $favorites = auth()->user()->favorites()->get();
+
+    return view('products.favorites', compact('favorites'));
+}
+
 
 }
