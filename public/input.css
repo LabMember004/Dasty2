@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .product-group {
     display: grid;
     grid-template-columns:repeat(3,auto);
