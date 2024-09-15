@@ -12,13 +12,12 @@
         <a href="{{ route('products.filter', 'Electronics') }}" class="btn btn-primary">Electronics</a>
         <a href="{{ route('products.filter', 'Houses') }}" class="btn btn-primary">Houses</a>
     </div>
-    <a href="{{ route('products.create') }}" class="btn btn-primary">Add Product</a>
+   
     <form method="GET" action="{{ route('products.search') }}">
         <input type="text" name="query" placeholder="Search by title" value="{{ request()->input('query') }}">
         <button type="submit">Search</button>
     </form>
-    <a href="{{ route('products.myProduct') }}" class="btn btn-primary">My Products</a>
-    <a href="{{ route('products.favorites') }}" class="btn btn-primary">My Favorites</a>
+ 
 
     <div class="mt-5">
         <h2>Products List</h2>

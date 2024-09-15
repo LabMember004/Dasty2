@@ -6,74 +6,112 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Include Tailwind CSS -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
+ 
     <link href="output.css" rel="stylesheet">
+    <link href="input.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     @vite('public/app.css')
 </head>
 <body>
-    <p class="text-gray-500 bg-blue-500"> THIS IS A TEST</p>
     <div id="app">
-        <nav class="navbar navbar-expand-md vf- shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+        <nav class="bg-blue-400 text-white h-8">
+            <div class="container mx-auto flex items-center justify-between ">
+            <div class="flex space-x-4  mt-1 ml-60 ">
+                <a href="#" class="text-white hover:text-gray-300 ">
+                    <i class="fab fa-facebook icon"></i>
                 </a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                <a href="#" class="text-white hover:text-gray-300">
+                    <i class="fab fa-whatsapp icon"></i>
+                </a>
+                <a href="#" class="text-white hover:text-gray-300">
+                    <i class="fab fa-instagram icon"></i>
+                </a>
+                <a href="#" class="text-white hover:text-gray-300">
+                    <i class="fab fa-snapchat icon"></i>
+                </a>
+                <a href="#" class="text-white hover:text-gray-300">
+                    <i class="fas fa-heart icon"></i>
+                </a>
+            <div class="text-white hover:text-gray-300">
+                <a href="#" class="font-bold">عربي</a>
+            </div>
+          
+           </div>
+                <!-- Navigation Links -->
+                <div id="nav-menu" class="lg:flex lg:items-center ">
+                    <ul class="flex space-x-4">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="text-white hover:text-gray-300" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="text-white hover:text-gray-300" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                            <li class="relative">
+                                <a id="navbarDropdown" class="cursor-pointer" onclick="toggleDropdown()">
+                                <i class="fa-solid fa-caret-down"></i>  
+                                   {{ Auth::user()->name }} ,slaw
+                                    <i class="fa-regular fa-user"></i>                               
+                                 </a>
+                                <!-- Dropdown Menu -->
+                                <ul id="dropdownMenu" class="absolute right-0 mt-2 hidden group-hover:block  text-black py-2 w-48">
+                                    <li>
+                                        <a class="block px-4 py-2 hover:bg-gray-200" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                       
+                                        <a href="{{ route('products.create') }}" class="block px-4 py-2 hover:bg-gray-200">Add Product</a>
+                                        <a href="{{ route('products.myProduct') }}" class="block px-4 py-2 hover:bg-gray-200">My Products</a>
+                                        <a href="{{ route('products.favorites') }}" class="block px-4 py-2 hover:bg-gray-200">My Favorites</a>
+                                     
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         @endguest
                     </ul>
                 </div>
             </div>
-        </nav>
+        </div>
+
+
+                
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+    <!-- Tailwind CSS Toggle Menu Script -->
+    <script>
+      function toggleDropdown() {
+        var dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('hidden');
+    }
+
+    // Optional: Close the dropdown if clicked outside of it
+    document.addEventListener('click', function(event) {
+        var dropdown = document.getElementById('dropdownMenu');
+        var navbarDropdown = document.getElementById('navbarDropdown');
+
+        // Check if the click was outside the dropdown or the toggle element
+        if (!navbarDropdown.contains(event.target) && !dropdown.contains(event.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+    </script>
 </body>
 </html>

@@ -51,3 +51,7 @@
     transform: scale(1.05); 
     opacity: 0.9; 
 }
+/* Ensure that dropdown remains visible when hovering over either parent or dropdown */
+.relative:hover .absolute {
+    display: block;
+}
