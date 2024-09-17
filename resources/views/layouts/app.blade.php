@@ -64,7 +64,7 @@
                                     <i class="fa-regular fa-user"></i>                               
                                  </a>
                                 <!-- Dropdown Menu -->
-                                <ul id="dropdownMenu" class="absolute right-0 mt-2 hidden group-hover:block  text-black py-2 w-48">
+                                <ul id="dropdownMenu" class="absolute right-0 mt-2 hidden group-hover:block bg-gray-100 text-black py-2 w-48">
                                     <li>
                                         <a class="block px-4 py-2 hover:bg-gray-200" href="{{ route('logout') }}"
                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
