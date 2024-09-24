@@ -88,8 +88,10 @@ class ProductController extends Controller
         return view('welcome', compact('products'));
     }
     public function show ($id) {
-        $product = Product::find($id);
-        return view('products.show' , compact('product'));
+        $product = Product::findOrFail($id);
+    $products = Product::all(); 
+    
+    return view('products.show', compact('product', 'products'));
     }
     public function filterByCategory($category)
 {
