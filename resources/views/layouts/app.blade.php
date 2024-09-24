@@ -8,16 +8,15 @@
 
     <!-- Include Tailwind CSS -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
- 
-    <link href="output.css" rel="stylesheet">
-    <link href="input.css" rel="stylesheet">
+    
+
+    <link href="/output.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    @vite('public/app.css')
 </head>
 <body>
-    <div id="app">
+    <div >
         <nav class="bg-blue-400 text-white h-8">
             <div class="container mx-auto flex items-center justify-between ">
             <div class="flex space-x-4  mt-1 ml-60 ">

@@ -3,55 +3,9 @@
 @tailwind utilities;
 
 
-.product-group {
-    display: grid;
-    grid-template-columns:repeat(3,auto);
-    grid-auto-flow:row;
-    gap:10px;
-    
-    width:1300px;
-    margin-left:200px;
-}
-
-.product-group-item {
-    width:310px;
-    height:500px;
-}
-.card-img-top {
-    height:300px;
-}
-
-.product-card {
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    padding: 15px;
-    margin-bottom: 15px;
-    transition: background-color 0.4s, box-shadow 0.3s;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.product-card img {
-    max-width: 100%; 
-    border-radius: 4px;
-    transition: transform 0.4s ease, opacity 0.3s ease; 
-    height:300px;
-    width:300px;
-}
-
 .product-card:hover {
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.product-card:hover img {
-    transform: scale(1.05); 
-    opacity: 0.9; 
-}
-/* Ensure that dropdown remains visible when hovering over either parent or dropdown */
-.relative:hover .absolute {
-    display: block;
-}
+
