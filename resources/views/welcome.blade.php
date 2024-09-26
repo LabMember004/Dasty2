@@ -39,8 +39,9 @@
                 @endforeach
             </div>
            
-                
-                <x-vip-section :products="$products" />
+
+                    <x-vip-section :products="$products" />
+               
            
         </div>
       

@@ -9,3 +9,16 @@
 }
 
 
+.swiper-slide img {
+    width: 100%;
+    height: 250px; /* Adjust height as per your design */
+    object-fit: cover;
+}
+
+.swiper-container {
+    position: relative; /* Make it the parent for relative positioning */
+    padding-bottom: 50px; /* Add space at the bottom for pagination */
+}
+
+
+

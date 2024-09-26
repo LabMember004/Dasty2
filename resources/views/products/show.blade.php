@@ -93,8 +93,77 @@
         </div>
     </div>
 
-    <!-- Override the VIP Section Layout for Show Page -->
-    <div class="mt-8 border-2 border-red-500 flex flex-row flex-wrap gap-4">
-        <x-vip-section :products="$products" />
+    <div class="container overflow-x-hidden w-2/4">
+    <div class="swiper-container border-2 border-red-500">
+        <div class="swiper-wrapper">
+            @foreach($products as $product)
+            <div class="swiper-slide">
+                <a href="{{ route('products.show', $product->id) }}" class="block">
+                    <div class="bg-gray-200 shadow-lg hover:shadow-2xl transition h-full flex flex-col rounded-md overflow-hidden w-full relative mt-6">
+                        <div class="h-60 relative">
+                            <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                            <i class="fa-solid fa-crown absolute top-0 right-0 text-white font-bold px-2 py-1 rounded-bl-lg h-12 w-12 bg-yellow-400"></i> 
+                            <h3 class="absolute bottom-0 left-0 text-white text-lg font-semibold p-2 bg-gray-900 bg-opacity-50 w-full">{{ $product->name }}</h3>
+                        </div>
+                        <div class="p-4 bg-gray-100 flex-grow text-right">
+                            <p class="text-blue-600 text-lg">{{ Str::limit($product->description, 30) }}</p>
+                            <p class="text-gray-500 font-semibold mt-2 text-xl">${{ $product->price }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+        
+        <!-- Swiper Pagination: ensure it's outside the swiper-wrapper for proper placement -->
+        <div class="swiper-pagination"></div>
     </div>
+</div>
+        <h1 class="container text-2xl text-center mt-12"> Related Components</h1>
+            <div class=" grid grid-cols-3 gap-4 container w-2/4 mt-12">
+            @foreach($products as $product)
+                    <a href="{{ route('products.show', $product->id) }}" class="block">
+                        <div class="bg-gray-600 shadow-lg hover:shadow-2xl transition h-full flex flex-col rounded-md overflow-hidden w-full">
+                            <div class="h-60 relative">
+                                <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                <h3 class="absolute bottom-0 left-0 text-white text-lg font-semibold p-2 bg-gray-900 bg-opacity-50 w-full">{{ $product->name }}</h3>
+                            </div>
+                            <div class="p-4 bg-gray-100 flex-grow">
+                                <p class="text-blue-600 text-lg">{{ Str::limit($product->description, 30) }}</p>
+                                <p class="text-gray-500 font-semibold mt-2 text-xl">${{ $product->price }}</p>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+           
+
+               
+           
+        </div>
+        </div>
+
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        
+        loop: true,
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        },
+    });
+</script>
 @endsection
