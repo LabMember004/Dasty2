@@ -20,7 +20,7 @@
             My Items <i class="fa-solid fa-bars"></i>
         </a>
         <a href="{{ route('products.create') }}" class="inline-block px-4 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 transition duration-200">
-            Add Item <i class="fa-solid fa-plus"></i>
+            Add Items <i class="fa-solid fa-plus"></i>
         </a>
     </div>
                 @foreach($products as $product)
