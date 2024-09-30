@@ -19,4 +19,12 @@ class Product extends Model
 {
     return $this->hasMany(Favorite::class);
 }
+public function relatedProducts()
+    {
+        return Product::where('category', $this->category)
+                      ->where('id', '!=', $this->id)
+                      ->distinct()
+                      ->take(3)
+                      ->get();
+    }
 }

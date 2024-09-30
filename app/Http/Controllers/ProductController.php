@@ -90,8 +90,9 @@ class ProductController extends Controller
     public function show ($id) {
         $product = Product::findOrFail($id);
     $products = Product::all(); 
+    $relatedProducts = $product->relatedProducts();
     
-    return view('products.show', compact('product', 'products'));
+    return view('products.show', compact('product', 'products' , 'relatedProducts'));
     }
     public function filterByCategory($category)
 {

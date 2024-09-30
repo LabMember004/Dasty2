@@ -16,10 +16,10 @@
         <a href="" class="inline-block px-4 py-2 font-semibold rounded-lg bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50 transition duration-200">
             Newest Items
         </a>
-        <a href="" class="inline-block px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 transition duration-200">
+        <a href="{{route('products.myProduct')}}" class="inline-block px-4 py-2 text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 transition duration-200">
             My Items <i class="fa-solid fa-bars"></i>
         </a>
-        <a href="" class="inline-block px-4 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 transition duration-200">
+        <a href="{{ route('products.create') }}" class="inline-block px-4 py-2 bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 transition duration-200">
             Add Items <i class="fa-solid fa-plus"></i>
         </a>
     </div>

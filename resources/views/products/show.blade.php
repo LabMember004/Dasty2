@@ -92,7 +92,7 @@
             </div>
         </div>
     </div>
-
+<!-- VIP SECTION -->
     <div class="container overflow-x-hidden w-2/4">
     <div class="swiper-container border-2 border-red-500">
         <div class="swiper-wrapper">
@@ -119,9 +119,9 @@
         <div class="swiper-pagination"></div>
     </div>
 </div>
-        <h1 class="container text-2xl text-center mt-12"> Related Components</h1>
-            <div class=" grid grid-cols-3 gap-4 container w-2/4 mt-12">
-            @foreach($products as $product)
+        <h1 class="container text-2xl text-center"> Related Components</h1>
+            <div class=" grid grid-cols-3 gap-4 container w-2/4">
+@foreach($relatedProducts as $product)
                     <a href="{{ route('products.show', $product->id) }}" class="block">
                         <div class="bg-gray-600 shadow-lg hover:shadow-2xl transition h-full flex flex-col rounded-md overflow-hidden w-full">
                             <div class="h-60 relative">
@@ -141,8 +141,9 @@
                
            
         </div>
-        </div>
+    </div>
 
+        <x-footer />
 <script>
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
