@@ -3,35 +3,55 @@
 @section('title', 'Edit Product')
 
 @section('content')
-    <div class="container mt-5">
-        <h2>Edit Product</h2>
-        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+<a href="{{ route('products.index') }}">
+                <i class="fa-solid fa-arrow-left ml-10" style="font-size: 36px;"></i>
+            </a>
+    <div class="container mx-auto mt-10 p-8 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Edit Product</h2>
+        
+        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
             @method('PUT')
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $product->name }}" required>
+            
+            <!-- Name Input -->
+            <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                <input type="text" class="h-10 form-input w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="name" name="name" value="{{ $product->name }}" required>
             </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" required>{{ $product->description }}</textarea>
+
+            <!-- Description Input -->
+            <div>
+                <label for="description" class="block text-gray-700 font-medium mb-2">Description</label>
+                <textarea class="form-textarea w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="description" name="description" rows="4" required>{{ $product->description }}</textarea>
             </div>
-            <div class="form-group">
-                <label for="price">Price</label>
-                <input type="number" class="form-control" id="price" name="price" value="{{ $product->price }}" required>
+
+            <!-- Price Input -->
+            <div>
+                <label for="price" class="block text-gray-700 font-medium mb-2">Price</label>
+                <input type="number" class="h-10 form-input w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="price" name="price" value="{{ $product->price }}" required>
             </div>
-            <div class="form-group">
-                <label for="category">Category</label>
-                <input type="text" class="form-control" id="category" name="category" value="{{ $product->category }}" required>
+
+            <!-- Category Input -->
+            <div>
+                <label for="category" class="block text-gray-700 font-medium mb-2">Category</label>
+                <input type="text" class="form-input w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="category" name="category" value="{{ $product->category }}" required>
             </div>
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="file" class="form-control" id="image" name="image">
+
+            <!-- Image Input -->
+            <div>
+                <label for="image" class="block text-gray-700 font-medium mb-2">Image</label>
+                <input type="file" class="form-input w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="image" name="image">
                 @if ($product->image)
-                    <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="img-thumbnail mt-2" width="150">
+                    <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="mt-4 rounded-lg shadow-lg w-32">
                 @endif
             </div>
-            <button type="submit" class="btn btn-primary">Update Product</button>
+
+            <!-- Submit Button -->
+            <div class="text-right">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+                    Update Product
+                </button>
+            </div>
         </form>
     </div>
 @endsection

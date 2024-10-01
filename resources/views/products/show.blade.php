@@ -23,7 +23,7 @@
         </div>
     </div>
     
-    <div class="container border-2 border-green-500 flex justify-between mt-4">
+    <div class="container flex justify-between mt-4">
         <div class="w-[350px] bg-gray-100">
             <p class="text-gray-500 text-lg p-2">Price</p>
             <p class="text-red-500 text-lg p-2">${{ number_format($product->price, 2) }}</p>
@@ -63,23 +63,25 @@
             </div>
         </div>
 
-        <div class="border-2 border-black flex-1">
+        <div class=" flex-1 bg-gray-100">
             <h2 class="text-4xl flex justify-end px-4 py-2">{{ $product->name ?? "" }}</h2>
             <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}" class="w-[800px] h-[500px] rounded-lg mx-auto">
             <p class="text-4xl flex justify-end px-4 py-2">{{ $product->description }}</p>
             
             @if (Auth::check() && Auth::id() === $product->user_id)
-                <a href="{{ route('products.edit', $product->id) }}" class="">Edit</a>
+            <div class="flex gap-4 ml-2">
+                <a href="{{ route('products.edit', $product->id) }}" class="inline-block px-4 py-2 bg-blue-500 hover:bg-blue-600  text-white rounded ">Edit</a>
                 <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="">Delete</button>
+                    <button type="submit" class="inline-block px-4 py-2 bg-red-700 hover:bg-red-800 rounded text-white ">Delete</button>
                 </form>
+                </div>
             @endif
-            <div class="border-2 border-yellow-500 h-16 flex bg-gray-100">
-                <form action="{{ route('products.favorite', $product->id) }}" method="POST" class="h-12 inline-block px-4 py-2 bg-red-500 text-white text-lg rounded hover:bg-red-600 m-2">
+            <div class=" h-16 flex bg-gray-100">
+                <form action="{{ route('products.favorite', $product->id) }}" method="POST" class="h-12 inline-block px-4 py-2 bg-green-500 text-white text-lg rounded hover:bg-green-600 m-2">
                     @csrf
-                    <i class="fa-regular fa-heart"></i> <button type="submit" class="">Favorite</button>
+                    <i class="fa-regular fa-heart"></i> <a href="{{ route('products.create') }}" class="">Favorite</a>
                 </form>
                 <form action="" method="POST" class="inline-block px-4 py-2 bg-yellow-500 text-white text-lg rounded hover:bg-yellow-600 h-12 m-2">
                     @csrf
@@ -94,7 +96,7 @@
     </div>
 <!-- VIP SECTION -->
     <div class="container overflow-x-hidden w-2/4">
-    <div class="swiper-container border-2 border-red-500">
+    <div class="swiper-container ">
         <div class="swiper-wrapper">
             @foreach($products as $product)
             <div class="swiper-slide">

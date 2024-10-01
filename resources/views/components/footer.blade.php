@@ -9,8 +9,6 @@
   <div class="container mx-auto text-center space-y-4">
     <!-- Links Section -->
     <div class="space-x-4 text-gray-500">
-      <a href="#" class="hover:text-gray-900">چۆنیەتی داواکردنی کاڵا</a>
-      <span>|</span>
       <a href="#" class="hover:text-gray-900">About</a>
       <span>|</span>
       <a href="#" class="hover:text-gray-900">Contact Us</a>
