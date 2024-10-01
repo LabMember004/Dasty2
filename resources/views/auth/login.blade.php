@@ -33,7 +33,7 @@
                 <div class="mb-4">
                     <div class="flex items-center">
                         <input id="remember" type="checkbox" name="remember" class="h-4 w-4 text-indigo-600 border-gray-300 rounded" {{ old('remember') ? 'checked' : '' }}>
-                        <label for="remember" class="ml-2 block text-sm text-gray-900">{{ __('Remember Me') }}</label>
+                        <label for="remember" class="ml-2 block text-sm text-gray-900">{{ __('Remember Me!') }}</label>
                     </div>
                 </div>
 
