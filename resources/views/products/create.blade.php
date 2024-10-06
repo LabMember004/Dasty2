@@ -14,7 +14,7 @@
             <!-- Name Input -->
             <div>
                 <label for="name" class="block text-gray-700 font-medium mb-2 ">Name</label>
-                <input type="text" class="form-input w-full h-10 bg-gray-100 border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="name" name="name " required>
+                <input type="text" class="form-input w-full h-10 bg-gray-100 border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="name" name="name" required />
             </div>
 
             <!-- Description Input -->

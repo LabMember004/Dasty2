@@ -27,4 +27,5 @@ public function relatedProducts()
                       ->take(3)
                       ->get();
     }
+   
 }

@@ -2,7 +2,7 @@
 
 <div class="card">
 
-<img src="{{ asset('storage/images/' . $image) }}" class="card-img-top" alt="{{ $name }}">
+<img src="{{ url('storage/'.$show->image) }}" class="card-img-top" alt="{{ $name }}">
 <div class="card-body">
         <h5 class="card-title">{{ $name }}</h5>
         <p class="card-text">{{ $description }}</p>

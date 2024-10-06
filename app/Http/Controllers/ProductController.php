@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Auth;
 use App\Models\Favorite;
 
+ 
+
+
 class ProductController extends Controller
 {
 
     
     public function index()
     {
-        $products = Product::all(); 
+        $products = Product::all();
         return view('welcome', compact('products'));
     }
 
@@ -42,10 +45,11 @@ class ProductController extends Controller
         $product->price = $request->input('price');
         $product->image = $request->file('image')->store('images', 'public');
         $product->category = $request->input('category');
-        $product->user_id = auth()->id(); // Assign the currently authenticated user's ID
+        $product->user_id = auth()->id(); 
         $product->save();
+        
     
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('welcome')->with('success', 'Product created successfully.');
     }
     
 

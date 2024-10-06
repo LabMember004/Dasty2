@@ -45,9 +45,7 @@
                         <a href="{{route('products.favorites')}}" class="text-white hover:text-gray-300">
                             <i class="fas fa-heart icon"></i>
                         </a>
-            <div class="text-white hover:text-gray-300">
-                <a href="#" class="font-bold">عربي</a>
-            </div>
+            
           
            </div>
                 <!-- Navigation Links -->

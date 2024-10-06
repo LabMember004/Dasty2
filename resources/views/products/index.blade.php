@@ -14,6 +14,7 @@
                     :category="$product->category" 
                 />
             </div>
+       
         @endforeach
     </div>
 @endsection
