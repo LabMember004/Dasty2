@@ -19,7 +19,6 @@
                     <div class="bg-white shadow-lg rounded-lg p-6 relative">
                         <x-card-style :product="$product" />
 
-                        <!-- Show Edit and Delete buttons only if the user is the creator -->
                         @if (Auth::check() && Auth::id() === $product->user_id)
                             <div class="mt-4 flex space-x-2">
                                 <a href="{{ route('products.edit', $product->id) }}" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg">
@@ -39,7 +38,6 @@
                             </div>
                      
                         @endif
-                               <!-- Favorite button for each product -->
                                <form action="{{ route('products.favorite', $product->id) }}" method="POST" class="mt-4">
                             @csrf
                             

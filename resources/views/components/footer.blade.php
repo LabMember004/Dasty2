@@ -1,11 +1,8 @@
-<div class="flex justify-between bg-gray-100 mt-10 " >
-    <div class="container ">
+<div class= "bg-gray-100">
 
 
-        <img src="{{asset('storage/images/dasy2-logo.png')}}">
-    </div >
-    <div class=" container">
-    <footer class="bg-gray-100 py-8">
+    <div class=" container ">
+    <footer class=" py-8">
   <div class="container mx-auto text-center space-y-4">
     <!-- Links Section -->
     <div class="space-x-4 text-gray-500">
@@ -36,4 +33,5 @@
 </footer>
 
     </div>
+</div>
 </div>

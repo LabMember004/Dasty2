@@ -6,7 +6,6 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Include Tailwind CSS -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     
 
@@ -48,10 +47,8 @@
             
           
            </div>
-                <!-- Navigation Links -->
                 <div id="nav-menu" class="lg:flex lg:items-center ">
                     <ul class="flex space-x-4">
-                        <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -102,19 +99,16 @@
         </main>
     </div>
 
-    <!-- Tailwind CSS Toggle Menu Script -->
     <script>
       function toggleDropdown() {
         var dropdownMenu = document.getElementById('dropdownMenu');
         dropdownMenu.classList.toggle('hidden');
     }
 
-    // Optional: Close the dropdown if clicked outside of it
     document.addEventListener('click', function(event) {
         var dropdown = document.getElementById('dropdownMenu');
         var navbarDropdown = document.getElementById('navbarDropdown');
 
-        // Check if the click was outside the dropdown or the toggle element
         if (!navbarDropdown.contains(event.target) && !dropdown.contains(event.target)) {
             dropdown.classList.add('hidden');
         }

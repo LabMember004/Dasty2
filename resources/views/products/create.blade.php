@@ -11,31 +11,30 @@
         
         <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
-            <!-- Name Input -->
             <div>
                 <label for="name" class="block text-gray-700 font-medium mb-2 ">Name</label>
                 <input type="text" class="form-input w-full h-10 bg-gray-100 border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="name" name="name" required />
             </div>
 
-            <!-- Description Input -->
             <div>
                 <label for="description" class="block text-gray-700 font-medium mb-2">Description</label>
                 <textarea class="form-textarea w-full bg-gray-100 border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="description" name="description" rows="4" required></textarea>
             </div>
 
-            <!-- Price Input -->
             <div>
                 <label for="price" class="block text-gray-700 font-medium mb-2">Price</label>
                 <input type="number" class="h-10 form-input w-full border-gray-300 bg-gray-100 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="price" name="price" required>
             </div>
 
-            <!-- Image Input -->
             <div>
                 <label for="image" class="block text-gray-700 font-medium mb-2">Image</label>
                 <input type="file" class="form-input w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="image" name="image">
             </div>
+            <div>
+                <label for="number" class="block text-gray-700 font-medium mb-2">Number</label>
+                <input type="number" class="form-input w-full h-10 bg-gray-100 border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="number" name="number" required />
+            </div>
 
-            <!-- Category Input -->
             <div>
                 <label for="category" class="block text-gray-700 font-medium mb-2">Category</label>
                 <select class="bg-gray-100 h-10 form-select w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-500" id="category" name="category" required>

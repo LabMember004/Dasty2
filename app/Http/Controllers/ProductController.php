@@ -37,6 +37,7 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'image' => 'required|image',
             'category' => 'required',
+            'number' => 'required|numeric'
         ]);
     
         $product = new Product();
@@ -45,6 +46,7 @@ class ProductController extends Controller
         $product->price = $request->input('price');
         $product->image = $request->file('image')->store('images', 'public');
         $product->category = $request->input('category');
+        $product->number= $request->input('number');
         $product->user_id = auth()->id(); 
         $product->save();
         
@@ -66,15 +68,16 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'required|string|max:255',
+            'number' => 'required'
         ]);
 
         if ($request->hasFile('image')) {
             $imageName = time().'.'.$request->image->extension();  
-            $request->image->storeAs('public/images', $imageName);
+            $request->image->storeAs('public', $imageName);
             $product->image = $imageName;
         }
 
-        $product->update($request->only(['name', 'description', 'price', 'category']));
+        $product->update($request->only(['name', 'description', 'price', 'category' , 'number']));
 
         return redirect()->route('welcome')->with('success', 'Product updated successfully.');
     }

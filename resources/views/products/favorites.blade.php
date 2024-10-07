@@ -19,7 +19,6 @@
                     <div class="bg-gray-100 shadow-lg rounded-lg p-6 ">
                         <x-card-style :product="$product" />
 
-                        <!-- Unfavorite Form -->
                         <form action="{{ route('products.unfavorite', $product->id) }}" method="POST" class="mt-4">
                             @csrf
                             <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded">
