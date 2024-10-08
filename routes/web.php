@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DashboardController;
 
 // Home route
 Route::get('/', [ProductController::class, 'index'])->name('welcome');
@@ -21,9 +22,14 @@ Route::post('/products/{product}/unfavorite', [ProductController::class, 'unfavo
 Route::get('/favorites', [ProductController::class, 'showFavorites'])->name('products.favorites');
 
 
+Route::get('dashboard',[DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::delete('dashboard/{id}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
 
+Route::put('dashboard/{id}', [DashboardController::class, 'update'])->name('dashboard.update');
+Route::get('dashboard/edit/{id}', [DashboardController::class, 'edit'])->name('dashboard.edit');
 
 Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');
+
 
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 

@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\User;
+Use Illuminate\Support\Facades\Auth;
+
+
+class DashboardController extends Controller
+{
+public function index() {
+    $products = Product::all();
+    $users = User::all();
+    return view('dashboard', compact('products', 'users'));
+}
+public function destroy($id)
+{
+    $user = User::findOrFail($id);
+    $user->delete();
+    return redirect()->route('dashboard');
+}
+
+public function edit($id)
+{
+    $user = User::findOrFail($id);
+    return view('products.dashboard-edit', compact('user'));
+}
+public function update(Request $request, $id)
+{
+    $user = User::findOrFail($id);
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+    $user->save();
+    return redirect()->route('dashboard');
+}
+}
