@@ -18,6 +18,7 @@ public function index() {
 public function destroy($id)
 {
     $user = User::findOrFail($id);
+    
     $user->delete();
     return redirect()->route('dashboard');
 }
@@ -35,4 +36,16 @@ public function update(Request $request, $id)
     $user->save();
     return redirect()->route('dashboard');
 }
+public function products() 
+{
+    $products=Product::all();
+    return view('dashboard-products' , ['products' => $products]);
+}
+public function destroyProduct($id)
+{
+    $product = Product::findOrFail($id);
+    $product->delete();
+    return redirect()->route('dashboard.products');
+}
+
 }

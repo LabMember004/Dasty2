@@ -4,20 +4,24 @@
 
 
 .product-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transform: translateY(-5px); 
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
+html,body{
+    margin:0;
+    padding:0;
+}
 
 .swiper-slide img {
     width: 100%;
-    height: 250px; /* Adjust height as per your design */
+    height: 250px; 
     object-fit: cover;
 }
 
 .swiper-container {
-    position: relative; /* Make it the parent for relative positioning */
-    padding-bottom: 50px; /* Add space at the bottom for pagination */
+    position: relative; 
+    padding-bottom: 50px; 
 }
 
 

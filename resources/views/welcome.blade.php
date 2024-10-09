@@ -25,6 +25,7 @@
     </div>
                 @foreach($products as $product)
                 @if($product->is_vip == 0)
+           
                
                     <a href="{{ route('products.show', $product->id) }}" class="block">
                         <div class="bg-gray-600 shadow-lg hover:shadow-2xl transition h-full flex flex-col rounded-md overflow-hidden w-full">
@@ -41,6 +42,7 @@
                         </div>
                     </a>
                 @endif
+        
                 @endforeach
             </div>
            

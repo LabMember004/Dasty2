@@ -121,6 +121,8 @@
         
       
         <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
     </div>
 </div>
         <h1 class="container text-2xl text-center"> Related Components</h1>
@@ -150,15 +152,23 @@
 
         <x-footer />
 <script>
-    var swiper = new Swiper('.swiper-container', {
+ var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 20,
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         },
-        
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
         loop: true,
+        autoplay: {
+            delay: 3000, // Adjust the delay as needed
+            disableOnInteraction: false, // Keep autoplay running after user interactions
+        },
+        mousewheel: true, // Enable mouse wheel control
         breakpoints: {
             640: {
                 slidesPerView: 1,

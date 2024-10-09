@@ -25,8 +25,15 @@ Route::get('/favorites', [ProductController::class, 'showFavorites'])->name('pro
 Route::get('dashboard',[DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::delete('dashboard/{id}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
 
+
+
 Route::put('dashboard/{id}', [DashboardController::class, 'update'])->name('dashboard.update');
 Route::get('dashboard/edit/{id}', [DashboardController::class, 'edit'])->name('dashboard.edit');
+
+Route::get('dashboard/products', [DashboardController::class, 'products'])->name('dashboard.products');
+Route::delete('dashboard/products/{id}', [DashboardController::class, 'destroyProduct'])->name('dashboard.destroyProduct');
+
+
 
 Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');
 
