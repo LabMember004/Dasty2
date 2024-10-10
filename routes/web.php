@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardUserController;
 
 // Home route
 Route::get('/', [ProductController::class, 'index'])->name('welcome');
@@ -36,6 +37,11 @@ Route::delete('dashboard/products/{id}', [DashboardController::class, 'destroyPr
 
 
 Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');
+
+
+Route::get('/dashboard/register', [DashboardUserController::class, 'showRegisterForm'])->name('dashboard.register');
+Route::post('/dashboard/register', [DashboardUserController::class, 'register'])->name('dashboard.register.post');
+
 
 
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
