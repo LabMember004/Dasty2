@@ -34,7 +34,7 @@ class DashboardUserController extends Controller
            'email' => $request->email,
            'password' => Hash::make($randomPassword),
        ]);
-       Mail::send('', ['user' => $user, 'password' => $randomPassword], function($message) use ($user) {
+       Mail::send('emailRegister', ['user' => $user, 'password' => $randomPassword], function($message) use ($user) {
            $message->to($user->email);
            $message->subject('Welcome to the Dashboard');
        });

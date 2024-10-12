@@ -13,7 +13,7 @@
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700">{{ __('Email Address') }}</label>
                     <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
-                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 @error('email') border-red-500 @enderror">
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 @error('email')  @enderror">
                     @error('email')
                         <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
                     @enderror
@@ -23,7 +23,7 @@
                 <div class="mb-4">
                     <label for="password" class="block text-sm font-medium text-gray-700">{{ __('Password') }}</label>
                     <input id="password" type="password" name="password" required autocomplete="current-password"
-                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 @error('password') border-red-500 @enderror">
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 @error('password')  @enderror">
                     @error('password')
                         <span class="text-sm text-red-500 mt-1">{{ $message }}</span>
                     @enderror

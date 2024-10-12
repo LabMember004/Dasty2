@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardUserController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyTestEmail;
 
 // Home route
 Route::get('/', [ProductController::class, 'index'])->name('welcome');
@@ -39,9 +41,15 @@ Route::delete('dashboard/products/{id}', [DashboardController::class, 'destroyPr
 Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');
 
 
-Route::get('/dashboard/register', [DashboardUserController::class, 'showRegisterForm'])->name('dashboard.register');
+Route::get('/dashboard/register', [DashboardUserController::class, 'showRegisterForm'])->name('dashboard.register.form');
 Route::post('/dashboard/register', [DashboardUserController::class, 'register'])->name('dashboard.register.post');
 
+
+
+Route::get('/test-email', function () {
+   $name="John Doe";
+   Mail::to('hesharvaldez@gmail.com')-> send(new MyTestEmail($name));
+});
 
 
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
