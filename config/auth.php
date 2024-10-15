@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'dashboard' => [  
+            'driver' => 'session',
+            'provider' => 'dashboard_users', // Ensure this matches the provider below
+        ],
     ],
 
     /*
@@ -62,13 +66,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'dashboard_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\DashboardUser::class, // No need for env() if hardcoded
+        ],
     ],
 
     /*
@@ -94,6 +98,12 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'dashboard_users' => [ // Add this for dashboard password reset
+            'provider' => 'dashboard_users',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'dashboard_password_reset_tokens'), // Change table name if needed
             'expire' => 60,
             'throttle' => 60,
         ],

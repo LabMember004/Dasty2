@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardUserController;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Auth\LoginController;
 use App\Mail\MyTestEmail;
 
 // Home route
@@ -20,14 +21,11 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy'])->nam
 Route::get('/products/category/{category}', [ProductController::class, 'filterByCategory'])->name('products.filter');
 Route::post('/products/{product}/favorite', [ProductController::class, 'favorite'])->name('products.favorite');
 
-// Route for viewing all favorited products
 Route::post('/products/{product}/unfavorite', [ProductController::class, 'unfavorite'])->name('products.unfavorite');
 Route::get('/favorites', [ProductController::class, 'showFavorites'])->name('products.favorites');
 
 
-Route::get('dashboard',[DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
-Route::delete('dashboard/{id}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
-
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
 Route::put('dashboard/{id}', [DashboardController::class, 'update'])->name('dashboard.update');
@@ -41,19 +39,24 @@ Route::delete('dashboard/products/{id}', [DashboardController::class, 'destroyPr
 Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');
 
 
-Route::get('/dashboard/register', [DashboardUserController::class, 'showRegisterForm'])->name('dashboard.register.form');
+Route::get('/dashboard/register', [DashboardUserController::class, 'showRegisterForm'])->name('dashboard.register');
 Route::post('/dashboard/register', [DashboardUserController::class, 'register'])->name('dashboard.register.post');
 
+Route::get('/dashboard/login', [DashboardUserController::class, 'showLoginForm'])->name('dashboard.login');
+Route::post('/dashboard/login', [DashboardUserController::class, 'login'])->name('dashboard.login.submit');
 
 
-Route::get('/test-email', function () {
-   $name="John Doe";
-   Mail::to('hesharvaldez@gmail.com')-> send(new MyTestEmail($name));
-});
+Route::post('/logout', [LoginController::class, 'logout'])->name('dashboard.logout');
+
 
 
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 
-// Authentication routes
+Route::get('/dashboard/change-password', [DashboardUserController::class, 'showChangePasswordForm'])->name('dashboard.change-password');
+Route::post('/dashboard/change-password', [DashboardUserController::class, 'changePassword'])->name('dashboard.change-password.post');
+
+
+
+
 Auth::routes();
 
