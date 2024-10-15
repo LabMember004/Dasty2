@@ -17,11 +17,10 @@ class CheckPasswordChanged
     public function handle($request, Closure $next)
     {
 
-        if ($user && !$user->password_changed) {
-            // Redirect to change password page if password has not been changed
-            return redirect()->route('dashboard.change-password');
+        if (Auth::check() && Auth::user()->password_changed == 0) {
+            // Redirect to change password route
+            return redirect()->route('password.change'); // Ensure this route exists
         }
-
         return $next($request);
     }
 }

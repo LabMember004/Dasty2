@@ -13,6 +13,10 @@ class DashboardController extends Controller
 public function index() {
     $products = Product::all();
     $users = User::all();
+
+    if (Auth::check() && Auth::user()->password_changed == 0) {
+        return redirect()->route('password.change');
+    }
     return view('dashboard', compact('products', 'users'));
 }
 public function destroy($id)

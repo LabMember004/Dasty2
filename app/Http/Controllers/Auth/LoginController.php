@@ -22,27 +22,30 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // Validate the request...
-        $this->validate($request, [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-
-
-        if (Auth::guard('dashboard')->attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            return $this->authenticated($request, Auth::guard('dashboard')->user());
+        $credentials = $request->only('email', 'password');
+    
+        // Attempt to log in using the 'dashboard' guard
+        if (Auth::guard('dashboard')->attempt($credentials)) {
+            // Fetch the logged-in user
+            $user = Auth::guard('dashboard')->user();
+            
+            // Check if password has been changed
+            if (!$user->password_changed) {
+                // Redirect to change password page
+                return redirect()->route('dashboard.changePassword');
+            }
+            
+    
+            // If the password is changed, redirect to the dashboard
+            return redirect()->intended('/dashboard');
         }
-        if (Auth::guard('web')->attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            return $this->authenticated($request, Auth::guard('web')->user());
-        }
-
-     
-
-        // If authentication fails
-        return back()->withInput($request->only('email', 'remember'))->withErrors([
+    
+        // If credentials are invalid
+        return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
-        ]);
+        ])->onlyInput('email');
     }
+    
     use AuthenticatesUsers;
 
     /**

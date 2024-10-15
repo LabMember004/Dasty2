@@ -25,7 +25,7 @@ Route::post('/products/{product}/unfavorite', [ProductController::class, 'unfavo
 Route::get('/favorites', [ProductController::class, 'showFavorites'])->name('products.favorites');
 
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
 Route::put('dashboard/{id}', [DashboardController::class, 'update'])->name('dashboard.update');
@@ -52,8 +52,11 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('dashboard.logo
 
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 
-Route::get('/dashboard/change-password', [DashboardUserController::class, 'showChangePasswordForm'])->name('dashboard.change-password');
-Route::post('/dashboard/change-password', [DashboardUserController::class, 'changePassword'])->name('dashboard.change-password.post');
+Route::get('/dashboard/change-password', [DashboardUserController::class, 'showChangePasswordForm'])->name('dashboard.password.change');
+Route::post('/dashboard/change-password', [DashboardUserController::class, 'changePassword'])->name('dashboard.password.update');
+
+
+
 
 
 

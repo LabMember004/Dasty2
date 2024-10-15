@@ -7,9 +7,11 @@ use App\Models\DashboardUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 class DashboardUserController extends Controller
 {
+
 
     public function showRegisterForm()
     {
@@ -48,12 +50,19 @@ class DashboardUserController extends Controller
     {
         $credentials = $request->only('email', 'password');
     
-        // Attempt to log in using the 'dashboard' guard
         if (Auth::guard('dashboard')->attempt($credentials)) {
-            // Redirect to the intended dashboard route after successful login
+            // Get the currently authenticated user
+            $user = Auth::guard('dashboard')->user();
+    
+            // Check if the user has changed their password
+            if (!$user->password_changed) {
+                // Redirect to password change page if password hasn't been changed
+                return redirect()->route('dashboard.password.change');
+            }
+    
+            // If password has already been changed, proceed to the dashboard
             return redirect()->intended('/dashboard');
         }
-     
     
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
@@ -82,8 +91,9 @@ public function changePassword(Request $request)
     $user->password_changed = true;
     $user->save();
 
-    return redirect()->route('dashboard')->with('success', 'Password changed successfully.');
+    return redirect('/dashboard')->with('success', 'Password changed successfully.');
 }
+
 
 
     

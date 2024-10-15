@@ -1,17 +1,10 @@
-<!-- dashboard-change-password.blade.php -->
-
-<form action="{{ route('dashboard.change-password.post') }}" method="POST">
+<form method="POST" action="{{ route('dashboard.password.update') }}">
     @csrf
+    <label for="password">New Password</label>
+    <input id="password" type="password" name="password" required>
 
-    <div>
-        <label for="password">New Password</label>
-        <input type="password" name="password" id="password" required>
-    </div>
-
-    <div>
-        <label for="password_confirmation">Confirm Password</label>
-        <input type="password" name="password_confirmation" id="password_confirmation" required>
-    </div>
+    <label for="password_confirmation">Confirm Password</label>
+    <input id="password_confirmation" type="password" name="password_confirmation" required>
 
     <button type="submit">Change Password</button>
 </form>
