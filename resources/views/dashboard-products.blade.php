@@ -1,9 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div>
+    <div class="mt-[-16px]">
+        <nav class="bg-blue-400 text-white h-8">
+            <div class="container mx-auto flex items-center justify-between">
+                <div id="nav-menu" class="lg:flex lg:items-center ml-auto"> <!-- Added ml-auto to move to right -->
+                    <ul class="flex space-x-4">
+                        @if (Auth::guard('dashboard')->check()) <!-- Check if the dashboard user is logged in -->
+                            <li class="relative">
+                                <a id="navbarDropdown" class="cursor-pointer" onclick="toggleDropdown()">
+                                    <i class="fa-solid fa-caret-down"></i>  
+                                    {{ Auth::guard('dashboard')->user()->name }} <!-- Shows the dashboard user name -->
+                                    <i class="fa-regular fa-user"></i>
+                                </a>
+                                <!-- Dropdown Menu -->
+                                <ul id="dropdownMenu" class="absolute right-0 hidden group-hover:block bg-gray-100 text-black py-2 w-48">
+                                    <li>
+                                        <a class="block px-4 py-2 hover:bg-gray-200" href="{{ route('dashboard.logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <a href="{{ route('dashboard.password.change') }}" class="block px-4 py-2 hover:bg-gray-200">Change Password</a> <!-- Change Password Option -->
+                                        <form id="logout-form" action="{{ route('dashboard.logout') }}" method="POST" class="hidden">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <!-- Optionally, you can add a message for users who are not logged in -->
+                            <li>
+                                <span class="text-white">Not logged in</span>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
 <div class="flex">
     <!-- Left Sidebar Navbar -->
-    <div class="w-1/6 h-screen bg-gray-800 text-white flex flex-col items-start p-4 space-y-4 mt-[-16px]">
+    <div class="w-1/6 h-screen bg-gray-800 text-white flex flex-col items-start p-4 space-y-4 mt-[-32px]">
         <h2 class="text-2xl font-bold mb-6">Dashboard Menu</h2>
         <a href="{{ route('welcome')}}" class="block w-full px-4 py-2 hover:bg-gray-700 rounded">Home</a>
         <a href="{{ route('dashboard')}}" class="block w-full px-4 py-2 hover:bg-gray-700 rounded">Users</a>

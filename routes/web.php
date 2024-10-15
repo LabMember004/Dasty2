@@ -55,6 +55,8 @@ Route::get('/search', [ProductController::class, 'search'])->name('products.sear
 Route::get('/dashboard/change-password', [DashboardUserController::class, 'showChangePasswordForm'])->name('dashboard.password.change');
 Route::post('/dashboard/change-password', [DashboardUserController::class, 'changePassword'])->name('dashboard.password.update');
 
+Route::post('/dashboard/logout', [DashboardUserController::class, 'logout'])->name('dashboard.logout');
+
 
 
 

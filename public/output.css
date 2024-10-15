@@ -732,6 +732,14 @@ video {
   margin-top: -16px;
 }
 
+.mt-\[-px\] {
+  margin-top: -px;
+}
+
+.mt-\[-32px\] {
+  margin-top: -32px;
+}
+
 .block {
   display: block;
 }

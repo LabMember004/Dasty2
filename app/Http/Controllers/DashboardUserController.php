@@ -69,11 +69,14 @@ class DashboardUserController extends Controller
         ])->onlyInput('email');
     }
     
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::guard('dashboard')->logout();
-    
-        return redirect('/');
+        Auth::guard('dashboard')->logout(); // Logout the dashboard user
+
+        $request->session()->invalidate();  // Invalidate the session
+        $request->session()->regenerateToken();  // Regenerate the token
+
+        return redirect('/dashboard-login'); // Redirect to dashboard login page after logout
     }
     public function showChangePasswordForm()
 {

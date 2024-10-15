@@ -10,6 +10,15 @@ Use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (!Auth::guard('dashboard')->check()) {
+                return redirect()->route('dashboard.login'); 
+            }
+            return $next($request);
+        });
+    }
 public function index() {
     $products = Product::all();
     $users = User::all();
