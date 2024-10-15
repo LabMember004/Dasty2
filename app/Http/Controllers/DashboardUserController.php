@@ -10,7 +10,17 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 class DashboardUserController extends Controller
-{
+{   
+    
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (!Auth::guard('dashboard')->check()) {
+                return redirect()->route('login'); 
+            }
+            return $next($request);
+        });
+    }
 
 
     public function showRegisterForm()

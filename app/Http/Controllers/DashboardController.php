@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
 Use Illuminate\Support\Facades\Auth;
+use App\Models\DashboardUser;
 
 
 class DashboardController extends Controller
@@ -22,11 +23,12 @@ class DashboardController extends Controller
 public function index() {
     $products = Product::all();
     $users = User::all();
+    $dashboardUsers = DashboardUser::all();
 
     if (Auth::check() && Auth::user()->password_changed == 0) {
         return redirect()->route('password.change');
     }
-    return view('dashboard', compact('products', 'users'));
+    return view('dashboard', compact('products', 'users' , 'dashboardUsers'));
 }
 public function destroy($id)
 {

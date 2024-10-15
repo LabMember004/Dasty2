@@ -39,7 +39,8 @@ Route::delete('dashboard/products/{id}', [DashboardController::class, 'destroyPr
 Route::get('/my-products', [ProductController::class, 'myProduct'])->name('products.myProduct')->middleware('auth');
 
 
-Route::get('/dashboard/register', [DashboardUserController::class, 'showRegisterForm'])->name('dashboard.register');
+Route::get('/dashboard/register', [DashboardRegisterController::class, 'showRegistrationForm'])
+    ->name('dashboard.register');
 Route::post('/dashboard/register', [DashboardUserController::class, 'register'])->name('dashboard.register.post');
 
 Route::get('/dashboard/login', [DashboardUserController::class, 'showLoginForm'])->name('dashboard.login');
